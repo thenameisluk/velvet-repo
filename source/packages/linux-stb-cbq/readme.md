@@ -1,0 +1,1 @@
+later it is planned to build kernel with github actions but rn it's simple to put all needed files here to make it easier

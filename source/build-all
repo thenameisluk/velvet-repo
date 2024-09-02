@@ -1,0 +1,15 @@
+#!/bin/bash
+#run inside scirpt dir
+cd "$(dirname "$0")"
+export main=$(pwd)
+
+#build all packages
+for buildme in ./packages/*/buildme; do
+
+    chmod +x "./${buildme}"
+    "./${buildme}" "$(pwd)/"
+
+done
+
+mkdir ../output
+mv *.deb ../output
