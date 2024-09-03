@@ -11,5 +11,8 @@ for buildme in ./packages/*/buildme; do
 
 done
 
-mkdir ../output
-mv *.deb ../output
+mkdir ../output -p
+
+for debfile in ./*.deb; do
+    mv ${debfile} ../output/$(basename $debfile) -v
+done;

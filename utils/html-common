@@ -1,16 +1,53 @@
 #!/bin/bash
-html-header(){
-    
+html-header(){ # <file> <title>
+    echo '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>'$2'</title>' > $1
 }
 
-html-body(){
-
+html-body(){ # <file>
+    echo '</head><body>' >> $1
 }
 
 html-end(){
+    echo '</body></html>' >> $1
+}
 
+html-a(){ # <file> <name> <url>
+    echo "<a href=\"$3\">$2</a> " >> $1
+}
+
+html-p-start(){
+    echo "<p>" >> $1
+}
+
+html-p-end(){
+    echo "</p>" >> $1
 }
 
 traverse(){
-    
+    html-header $1
+    html-body $1
+
+    html-p-start $1
+    html-a $1 .. ./..
+    html-p-end $1
+
+    for file in $(ls -r -S $(dirname $1)) ;do
+        if [ "$file" != "index.html" ];then
+            html-p-start $1
+            html-a $1 $file ./$file
+            html-p-end $1
+        fi
+
+        if [ -d $file ];then
+            echo $file
+            traverse $(dirname $1)/$file/index.html
+        fi
+    done
+    html-end $1
 }
+
+if [ -d $1 ];then
+    traverse $1/index.html
+else
+    echo sowwy $1 's not a directory
+fi
