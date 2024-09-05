@@ -4,6 +4,8 @@ cd "$(dirname "$0")"
 #read readme
 #dpkg --build linux*
 
+echo "[Info] moving stb-cbq kelner"
+
 cp prebuilt/*.deb .
 
 if [ "$1" != "" ]; then

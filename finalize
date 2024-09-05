@@ -1,5 +1,6 @@
 #!/bin/bash
 cd "$(dirname "$0")"
 
+echo "[Info] making repo explorable"
 ./utils/html-common build/repo
 tree build/repo

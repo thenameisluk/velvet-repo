@@ -7,6 +7,8 @@ mkdir build
 tree > build/index.html
 
 #build packages and more to output
+echo "[Info] building packages"
 ./source/build-all
 
+echo "[Info] building repo"
 ./repo/builder

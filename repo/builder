@@ -9,14 +9,16 @@ rm -rf build/repo
 
 mkdir -p build/repo/pool/main/
 
+echo "[Info] all packages"
 cp output/*.deb build/repo/pool/main/
-
+ls build/repo/pool/main/
 
 mkdir -p build/repo/dists/stable/main/binary-arm64
 mkdir -p build/repo/dists/stable/main/binary-all
 
 cd build/repo
 
+echo "[Info] scanning packages"
 dpkg-scanpackages --arch arm64 pool/ > dists/stable/main/binary-arm64/Packages
 dpkg-scanpackages --arch all pool/ > dists/stable/main/binary-all/Packages
 
@@ -24,6 +26,7 @@ cat dists/stable/main/binary-arm64/Packages | gzip -9 > dists/stable/main/binary
 cat dists/stable/main/binary-all/Packages | gzip -9 > dists/stable/main/binary-all/Packages.gz
 
 #generate Release file
+echo "[Info] generate Release file"
 cd dists/stable
 
 do_hash() {
@@ -56,5 +59,3 @@ do_hash "SHA256" "sha256sum"
 cd ../..
 
 # ^ based bash script from on https://earthly.dev/blog/creating-and-hosting-your-own-deb-packages-and-apt-repo/
-
-#signing with pgp

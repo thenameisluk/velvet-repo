@@ -3,6 +3,8 @@ cd "$(dirname "$0")"
 
 VERSION=0.5.2
 
+echo "[Info] building velvet tools version $VERSION"
+
 git clone --depth 1 --branch $VERSION https://github.com/thenameisluk/velvettools/
 
 cd velvettools
