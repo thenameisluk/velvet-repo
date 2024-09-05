@@ -20,7 +20,7 @@ echo "[Info] signing InRelease"
 gpg --no-default-keyring --keyring ./temp-keyring.gpg --clearsign -abs --output InRelease --sign Release
 
 echo "[Info] generating public key velvet_repo.asc"
-gpg --no-default-keyring --keyring ./temp-keyring.gpg --export --armor > ${root}/build/velvet_repo.asc
+gpg --no-default-keyring --keyring ./temp-keyring.gpg --export --armor > ${root}/build/repo/velvet_repo.asc
 
 #cleanning up
 echo "[Info] cleanning up"
