@@ -1,0 +1,60 @@
+#!/bin/bash
+set -e
+
+#sudo apt-get install -y gcc dpkg-dev gpg
+
+cd "$(dirname "$0")"/.. #run in main repo directory
+
+rm -rf build/repo
+
+mkdir -p build/repo/pool/main/
+
+cp output/*.deb build/repo/pool/main/
+
+
+mkdir -p build/repo/dists/stable/main/binary-arm64
+mkdir -p build/repo/dists/stable/main/binary-all
+
+cd build/repo
+
+dpkg-scanpackages --arch arm64 pool/ > dists/stable/main/binary-arm64/Packages
+dpkg-scanpackages --arch all pool/ > dists/stable/main/binary-all/Packages
+
+cat dists/stable/main/binary-arm64/Packages | gzip -9 > dists/stable/main/binary-arm64/Packages.gz
+cat dists/stable/main/binary-all/Packages | gzip -9 > dists/stable/main/binary-all/Packages.gz
+
+#generate Release file
+cd dists/stable
+
+do_hash() {
+    HASH_NAME=$1
+    HASH_CMD=$2
+    echo "${HASH_NAME}:" >> Release
+    for f in $(find -type f); do
+        #echo $f
+        f=$(echo $f | cut -c3-) # remove ./ prefix
+        if [ "$f" = "Release" ]; then
+            continue
+        fi
+        echo " $(${HASH_CMD} ${f}  | cut -d" " -f1) $(wc -c $f)" >> Release
+    done
+}
+
+echo 'Origin: github
+Suite: stable
+Codename: stable
+Version: 1.0
+Architectures: arm64 all
+Components: main
+Description: repo containing packages usefull for running debian on chromebook :3
+Date: $(date -Ru)' > Release
+
+do_hash "MD5Sum" "md5sum"
+do_hash "SHA1" "sha1sum"
+do_hash "SHA256" "sha256sum"
+
+cd ../..
+
+# ^ based bash script from on https://earthly.dev/blog/creating-and-hosting-your-own-deb-packages-and-apt-repo/
+
+#signing with pgp

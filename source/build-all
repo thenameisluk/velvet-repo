@@ -1,18 +1,18 @@
 #!/bin/bash
 #run inside scirpt dir
 cd "$(dirname "$0")"
-export main=$(pwd)
+
+rm -rf ../output #clean up previous build
+
+mkdir ../output
 
 #build all packages
 for buildme in ./packages/*/buildme; do
 
     chmod +x "./${buildme}"
-    "./${buildme}" "$(pwd)/"
+    "./${buildme}" "$(pwd)/../output"
 
 done
 
-mkdir ../output -p
 
-for debfile in ./*.deb; do
-    mv ${debfile} ../output/$(basename $debfile) -v
-done;
+

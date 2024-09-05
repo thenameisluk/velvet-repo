@@ -8,3 +8,7 @@ tree > build/index.html
 
 #build packages and more to output
 ./source/build-all
+
+./repo/builder
+
+#./utils/html-common build/repo

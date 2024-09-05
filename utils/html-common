@@ -49,5 +49,5 @@ traverse(){
 if [ -d $1 ];then
     traverse $1/index.html
 else
-    echo sowwy $1 's not a directory
+    echo "sowwy $1 's not a directory"
 fi
