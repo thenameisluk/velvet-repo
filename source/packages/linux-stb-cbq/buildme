@@ -9,5 +9,5 @@ echo "[Info] moving stb-cbq kelner"
 cp prebuilt/*.deb .
 
 if [ "$1" != "" ]; then
-    mv *.deb "$1"/ -v
+    mv *.deb "$1"/
 fi
