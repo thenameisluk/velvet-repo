@@ -34,7 +34,9 @@ jobs:
       - name: build repo
         run: ./buildme
       - name: sign repo
-        run: ./sign "${{ secrets.REPOPRIVATEKEY }}"
+        env:
+          KEY: ${{ secrets.REPOPRIVATEKEY }}
+        run: ./sign "$KEY"
       - name: finalize
         run: ./finalize
       - name: Setup Pages
