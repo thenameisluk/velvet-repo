@@ -10,5 +10,3 @@ tree > build/index.html
 ./source/build-all
 
 ./repo/builder
-
-#./utils/html-common build/repo

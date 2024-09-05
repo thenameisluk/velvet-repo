@@ -47,7 +47,7 @@ Version: 1.0
 Architectures: arm64 all
 Components: main
 Description: repo containing packages usefull for running debian on chromebook :3
-Date: $(date -Ru)' > Release
+Date: '$(date -Ru) > Release
 
 do_hash "MD5Sum" "md5sum"
 do_hash "SHA1" "sha1sum"

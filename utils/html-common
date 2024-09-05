@@ -24,6 +24,7 @@ html-p-end(){
 }
 
 traverse(){
+    #echo $1
     html-header $1
     html-body $1
 
@@ -31,15 +32,17 @@ traverse(){
     html-a $1 .. ./..
     html-p-end $1
 
+    local file
     for file in $(ls -r -S $(dirname $1)) ;do
+        #echo $file
         if [ "$file" != "index.html" ];then
             html-p-start $1
             html-a $1 $file ./$file
             html-p-end $1
         fi
 
-        if [ -d $file ];then
-            echo $file
+        if [ -d "$(dirname $1)/$file" ];then
+            #echo $file
             traverse $(dirname $1)/$file/index.html
         fi
     done

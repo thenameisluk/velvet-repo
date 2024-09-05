@@ -10,7 +10,7 @@ mkdir ../output
 for buildme in ./packages/*/buildme; do
 
     chmod +x "./${buildme}"
-    "./${buildme}" "$(pwd)/../output"
+    "./${buildme}" "$(pwd)/../output" > /dev/null 2>/dev/null
 
 done
 

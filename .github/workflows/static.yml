@@ -32,7 +32,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: build repo
-        run: ./build.sh
+        run: ./buildme
+      - name: sign repo
+        run: ./sign "${{ secrets.REPOPRIVATEKEY }}"
+      - name: finalize
+        run: ./finalize
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact

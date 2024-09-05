@@ -1,0 +1,32 @@
+#!/bin/bash
+cd "$(dirname "$0")"
+
+mkdir tmp
+cd tmp
+
+name=luk
+
+echo "%echo Generating an example PGP key
+Key-Type: RSA
+Key-Length: 4096
+Name-Real: $name
+Name-Email: lukasz.osadik@wp.pl
+Expire-Date: 0
+%no-ask-passphrase
+%no-protection
+%commit" > /tmp/example-pgp-key.batch
+
+export GNUPGHOME="$(mktemp -d ./pgpkeys-XXXXXX)"
+gpg --no-tty --batch --gen-key /tmp/example-pgp-key.batch
+
+ls "$GNUPGHOME/private-keys-v1.d"
+
+gpg --list-keys
+
+gpg --armor --export $name > ./pgp-key.public
+
+gpg --armor --export-secret-keys $name > ./pgp-key.private
+
+rm -rf $GNUPGHOME
+
+echo remember to take key somewhere safe and to remove this dir
