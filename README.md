@@ -25,7 +25,7 @@ then update repos
 ```
 sudo apt-get update --allow-insecure-repositories
 ```
-_Note. ```--allow-insecure-repositories``` is required for fetching unsigned repo
+_Note. ```--allow-insecure-repositories``` is required for fetching unsigned repo_
 and try to install new package
 
 notes for the future https://earthly.dev/blog/creating-and-hosting-your-own-deb-packages-and-apt-repo/
