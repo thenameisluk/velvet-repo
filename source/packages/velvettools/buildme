@@ -1,7 +1,7 @@
 #!/bin/bash
 cd "$(dirname "$0")"
 
-VERSION=0.6.3
+VERSION=0.6.4
 
 echo "[Info] building velvet tools version $VERSION"
 
