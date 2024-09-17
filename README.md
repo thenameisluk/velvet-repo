@@ -1,10 +1,14 @@
 # velvet-repo
 
+this isn't an offical (velvet os) repo (yet) just my side project
+
 repo containing packages usefull for running debian on chromebook :3
 
 - kelner
 - velvet tools
 - misc
+
+content of the repo [all](https://repo.velvet-os.org/repo/dists/stable/main/binary-all/Packages) and [arm64](https://repo.velvet-os.org/repo/dists/stable/main/binary-arm64/Packages)
 
 # adding repo
 
