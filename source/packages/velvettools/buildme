@@ -5,10 +5,10 @@ VERSION=0.6.8
 
 echo "[Info] building velvet tools version $VERSION"
 
-git clone --depth 1 --branch $VERSION https://github.com/thenameisluk/velvettools/ > /dev/null 2>/dev/null
+git clone --depth 1 --branch $VERSION https://github.com/thenameisluk/velvettools/ # > /dev/null 2>/dev/null
 
-cd velvettools
-./build_deb > /dev/null 2>/dev/null
+cd velvettools || exit 1
+./build_deb
 cd ..
 if [ "$1" == "" ]; then
     mv velvettools/*.deb .

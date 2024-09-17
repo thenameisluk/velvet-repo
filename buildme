@@ -9,6 +9,10 @@ tree > build/index.html
 #build packages and more to output
 echo "[Info] building packages"
 ./source/build-all
+if [ "$?" != "0" ];then
+    echo "[error] building packages failed" 
+    exit 1
+fi
 
 echo "[Info] building repo"
 ./repo/builder
