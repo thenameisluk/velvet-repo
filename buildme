@@ -4,8 +4,6 @@ cd "$(dirname "$0")"
 rm -rf build
 mkdir build
 
-tree > build/index.html
-
 #build packages and more to output
 echo "[Info] building packages"
 ./source/build-all

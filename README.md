@@ -1,3 +1,12 @@
+# Moved 18-09-2024
+
+moved to gitlab : https://gitlab.com/velvet-os/velvet-repo
+due to pages limit (github 1gb -> gitlab 10gb) usually doesn't matter that much but hosting a few versions of kernel might have cause and issue
+
+the address (https://repo.velvet-os.org/repo) and public key stay the same, no need to update existing apt configuration
+
+this repo will not be updated anymore
+
 # velvet-repo
 
 this isn't an offical (velvet os) repo (yet) just my side project
